@@ -39,11 +39,13 @@ def main () :
 #AFFICHAGE DE LA TOUR
     space = '  '
     etoile = '*'
-    nbétages = 0
-    
+    nbmarches = 1
+
     for index1 in range (0,marches,taille) :
-        for index2 in range(taille,0,-1) :
-            print( (index2*space) + etoile)
+        for index2 in range(taille,0,-1) : 
+            if nbmarches <= marches :
+                nbmarches += 1
+                print( (index2*space) + etoile )
 
 #Lancement du programme
 main()
