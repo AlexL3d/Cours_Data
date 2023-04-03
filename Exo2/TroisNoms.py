@@ -21,7 +21,7 @@ def Tri() :
     tri.append(nom2)
     tri.append(nom3)
     tri.sort()
-    # Affichage avec la virgule
+    # Affichage avec la virgule et pas celle par défaut
     tri = ', '.join(tri)
     print(f"Une fois trié, cela va donner : "+tri)
 
