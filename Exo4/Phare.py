@@ -28,8 +28,24 @@ def DistanceSemaine (distance) :
 
 #MAIN ===================================
 
-marches = SaisieMarches()
-taille = SaisieTailles()
-distance = CalculDistance(marches,taille)
-distanceSemaine = DistanceSemaine(distance)
+def main () :
+    marches = SaisieMarches()
+    taille = SaisieTailles()
+    distance = CalculDistance(marches,taille)
+    distanceSemaine = DistanceSemaine(distance)
+
+    print(f"Par semaine, il va parcourir {distance}cm.")
+
+#AFFICHAGE DE LA TOUR
+    space = '  '
+    etoile = '*'
+    nbétages = 0
+    
+    for index1 in range (0,marches,taille) :
+        for index2 in range(taille,0,-1) :
+            print( (index2*space) + etoile)
+
+#Lancement du programme
+main()
+
 

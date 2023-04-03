@@ -11,11 +11,11 @@ def Conjecture(nombre) :
     while nombre != 1 :
         nbétapes +=1
         if nombre % 2 == 0 :
-            nombre /= 2 
+            nombre //= 2 
         else :
             nombre *= 3
             nombre += 1
-    
+        print (nombre)
     print (f"Il a fallu {nbétapes} étapes.")
 
 def main() :
