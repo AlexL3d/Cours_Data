@@ -23,7 +23,7 @@ def CalculDistance (marches : int , taille : int) -> int :
 
 #Calcul de la distance par semaine
 def DistanceSemaine (distance) :
-    DistanceSemaine = distance * 2 * 5 * 7
+    DistanceSemaine = distance * 5 * 7
     return DistanceSemaine
 
 #MAIN ===================================
@@ -34,7 +34,7 @@ def main () :
     distance = CalculDistance(marches,taille)
     distanceSemaine = DistanceSemaine(distance)
 
-    print(f"Par semaine, il va parcourir {distance}cm.")
+    print(f"Par semaine, il va parcourir {distanceSemaine}cm ({distanceSemaine/100}m).")
 
 #AFFICHAGE DE LA TOUR
     space = '  '
