@@ -1,7 +1,7 @@
 #FONCTIONS =====================
 def Tchoutchou (vitesse : int) -> str: 
-    minute = (60*170//vitesse) % 60
     heure = 9 + (170//vitesse)
+    minute = (60*170//vitesse) % 60
     time = str(heure) + "H" + str(minute)
     
     return time
