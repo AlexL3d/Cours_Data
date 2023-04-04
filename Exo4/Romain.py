@@ -19,8 +19,8 @@ def listeRomain () :
     for clé,valeur in DicoRomain.items() :
         while nombre >= valeur :
             cpt = nombre // valeur
-            affichage += cpt * clé
             nombre -= cpt * valeur
+            affichage += cpt * clé
 
     print(f"Le nombre {nombre0} en chiffres Romains s'écrit : {affichage}.")
 
