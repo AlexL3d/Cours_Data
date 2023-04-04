@@ -9,8 +9,7 @@ def listeRomainInversé () :
     for index in range(len(chiffreRomain)-1) :
         if DicoRomain[chiffreRomain[index]] < DicoRomain[chiffreRomain[index+1]] :
             stockage = ""
-            stockage += chiffreRomain[index]
-            stockage += chiffreRomain[index+1]
+            stockage = chiffreRomain[index] + chiffreRomain[index+1]
             chiffreArabe += DicoRomain[stockage]
             booleen = True
         else :
