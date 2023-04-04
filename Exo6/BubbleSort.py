@@ -11,16 +11,16 @@ def Saisie () :
 
 def BubbleSort () :
     liste=Saisie()
-    booleen = False
+    booleen = True
 
     print(liste)
 
-    while booleen == False :
-        booleen = True
+    while booleen == True :
+        booleen = False
         for index in range (len(liste)-1) :
             if liste[index] > liste[index+1] :
                 liste[index], liste[index+1] = liste[index+1], liste[index]
-                booleen = False 
+                booleen = True 
     
     print(liste)
 
