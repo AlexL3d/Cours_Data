@@ -41,5 +41,5 @@ def RechercheBinaire (arr:list) :
             booleen = True
 
 #MAIN
-arr , leng = CréationTableau()
+arr = CréationTableau()
 RechercheBinaire(arr)
