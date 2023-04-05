@@ -6,7 +6,8 @@ def Saisie() :
 
     return nombre
 
-def Conjecture(nombre) :
+def Conjecture() :
+    nombre = Saisie()
     nbétapes = 0
     while nombre != 1 :
         nbétapes +=1
@@ -18,7 +19,4 @@ def Conjecture(nombre) :
         print (nombre)
     print (f"Il a fallu {nbétapes} étapes.")
 
-def main() :
-    Conjecture(Saisie())
-    
-main ()
+Conjecture()

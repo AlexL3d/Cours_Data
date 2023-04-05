@@ -27,4 +27,4 @@ def TTC () :
             print (f"{prix}€ avec {value}% de taxe, le prix est de {ttc}€.")
 
 #MAIN
-TTC ()
+TTC()

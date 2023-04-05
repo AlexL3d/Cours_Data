@@ -5,10 +5,10 @@ def Triangle () :
         print (('*' * index))
 
 def TriangleInversé () :
+    Triangle()
     for index in range (4,0,-1) :
         print (('*' * index))
 
 #MAIN 
 
-Triangle()
 TriangleInversé()
