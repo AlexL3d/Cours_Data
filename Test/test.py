@@ -7,8 +7,6 @@
 # Créer module: fichier en .py
 
 #appeler un module pour utiliser ses fonctions
-import Fibonacci
-
-Fibonacci.Fibonacci()
-
+# import Fibonacci
+# Fibonacci.Fibonacci()
 
