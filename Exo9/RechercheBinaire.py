@@ -7,7 +7,11 @@ def CréationTableau () :
 
     for i in range(500):
         arr.append(random.randrange(0,1000))
-        arr.sort()
+
+    arr.sort()
+
+    print (arr)
+    
     return arr
     
 def RechercheBinaire (arr:list) :
@@ -15,30 +19,29 @@ def RechercheBinaire (arr:list) :
     elem = 42
     booleen = False 
     moitié = len(arr)//2
-
+      
     while booleen == False :
 
-        if arr[moitié] < elem : 
-            if len(arr) == 1 :
-                print(f"Le chiffre 42 est absent de la liste.")
-                booleen = True
-            else : 
+        if len(arr) != 0 : 
+            if arr[moitié] > elem : 
                 for index in range (moitié) :
                     tab.append(arr[index])
-                RechercheBinaire(tab)
+                booleen=RechercheBinaire(tab)
             
-        elif arr[moitié] > elem :
-            if len(arr) == 1 :
-                print(f"Le chiffre 42 est absent de la liste.")
-                booleen = True
-            else :    
-                for index in range (moitié,len(arr),1) :
+            elif arr[moitié] < elem :
+                for index in range (moitié+1,len(arr)) :
                     tab.append(arr[index])
-                RechercheBinaire(tab)    
+                booleen=RechercheBinaire(tab)
+
+            else :
+                print(f"Le chiffre 42 est présent dans la liste.")
+                booleen = True
 
         else :
-            print(f"Le chiffre 42 est présent dans la liste.")
-            booleen = True
+            print(f"Le chiffre 42 n'est pas présent dans la liste.")
+            booleen = True 
+
+        return booleen    
 
 #MAIN
 arr = CréationTableau()
