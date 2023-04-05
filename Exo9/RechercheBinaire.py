@@ -20,7 +20,7 @@ def RechercheBinaire (arr:list) :
     booleen = False 
     moitié = len(arr)//2
       
-    while booleen == False :
+    while not booleen :
 
         if len(arr) != 0 : 
             if arr[moitié] > elem : 

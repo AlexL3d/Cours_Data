@@ -3,7 +3,7 @@ import random
 def CréationTableau () :
     arr = []
 
-    for i in range(500):
+    for index in range(500):
         arr.append(random.randrange(0,1000))
 
     return arr

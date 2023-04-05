@@ -22,6 +22,7 @@ def IndexMinimum() :
     if index_min != 0 :
         tab[0] , tab[index_min] = tab[index_min] , tab[0]
 
+    print(tab)
     print(f"L'index du plus petit nombre {tab[0]} vaut {index_min}.")       
 
 #MAIN
