@@ -10,39 +10,30 @@ def CréationTableau () :
 
     arr.sort()
 
-    print (arr)
-    
     return arr
     
-def RechercheBinaire (arr:list) :
-    tab = []
+def RechercheBinaire (arr,Debarr,Finarr) :
     elem = 42
-    booleen = False 
-    moitié = len(arr)//2
+    moitié = Debarr + (Finarr-Debarr)//2
       
-    while not booleen :
-
-        if len(arr) != 0 : 
-            if arr[moitié] > elem : 
-                for index in range (moitié) :
-                    tab.append(arr[index])
-                booleen=RechercheBinaire(tab)
+    if Finarr >= Debarr : 
+        if arr[moitié] > elem :    
+            return RechercheBinaire(arr,Debarr,moitié-1)
             
-            elif arr[moitié] < elem :
-                for index in range (moitié+1,len(arr)) :
-                    tab.append(arr[index])
-                booleen=RechercheBinaire(tab)
+        elif arr[moitié] < elem :
+            return RechercheBinaire(arr,moitié+1,Finarr)
 
-            else :
-                print(f"Le chiffre 42 est présent dans la liste.")
-                booleen = True
+        elif arr[moitié] == elem :
+            return moitié
 
-        else :
-            print(f"Le chiffre 42 n'est pas présent dans la liste.")
-            booleen = True 
-
-        return booleen    
+    else :
+        return "not find"
 
 #MAIN
 arr = CréationTableau()
-RechercheBinaire(arr)
+rslt = RechercheBinaire(arr,0,len(arr)-1)
+
+if rslt != "not find": 
+     print (f"L'indice de 42 est {rslt}.")
+else :
+     print ("42 n'a pas été trouvé.")
