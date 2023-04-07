@@ -14,17 +14,19 @@ données de la porte de cette maison.
 Écrivez un Main pour créer un Apartment, une personne pour y vivre et pour afficher les données de 
 la personne
 """
+from Porte import Porte
 
 class House :
 
-    def __init__(self,surface) -> None:
+    def __init__(self,surface,color) -> None:
         self.__surface = surface
+        self.__porte = Porte(color)
 
     def Display(self) :
         print(f"Je suis une maison, ma surface est de {self.__surface} m².") 
 
     def GetDoor(self) :
-        pass
+        return self.__porte
 
     @property
     def surface(self) :

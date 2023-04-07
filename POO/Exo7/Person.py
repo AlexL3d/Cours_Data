@@ -1,18 +1,23 @@
 from House      import House
 from Apartment  import Apartment
-from Porte      import Porte
 
 class Person :
     
     def __init__(self,nom,surface,color) -> None:
         self.__nom = nom
-        maison = House(surface)
-        porte = Porte(color)
-        self.Display(self.nom)
+        self.__logement = self.Choix(surface,color) 
 
     def Display(self) :
-        House.Display()
-        Porte.Display()
+        pass
+
+    def Choix(self,surface,color) :
+        if surface > 50 :
+            return House(surface,color)
+        else : 
+            return Apartment(surface,color)
+     
+    def GetLogement(self) :
+        return self.__logement
 
     @property
     def nom(self) :
@@ -21,7 +26,7 @@ class Person :
     @nom.setter 
     def nom(self,valeur):
         self.__nom = valeur
-    
+
 class Test :
 
     def __init__(self) -> None:

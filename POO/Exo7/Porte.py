@@ -17,4 +17,4 @@ class Porte :
         self.__color = valeur
 
     def Display(self) : 
-        print(f"je suis une porte, ma couleur est {self.__color}.")
+        print(f"je suis une porte, ma couleur est {self.color}.")
