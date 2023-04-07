@@ -20,7 +20,7 @@ class House :
     def __init__(self,surface) -> None:
         self.__surface = surface
 
-    def Display (self) :
+    def Display(self) :
         print(f"Je suis une maison, ma surface est de {self.__surface} m².") 
 
     def GetDoor(self) :
