@@ -31,7 +31,6 @@ class Somme :
             raise TypeError("Il faut un nombre")
 
     def sum(self) : 
-        return self.__n1 + self.__n2
     
     def saisie(self):
         n1 = int(input("Entrez un nombre : "))

@@ -18,27 +18,26 @@ class Student :
         n1 = input("Entrez un nom : ")
         n2 = int(input("Entrez un nombre : "))
         n3 = int(input("Entrez un nombre : "))
+
+        return n1,n2,n3
     
-    def get_n2(self) :
-            return self.__n2
+    def get_n1(self) :
+            return self.__n1
     
     def set_n1(self,n1) :
         self.__n1 = n1
+
+    def get_n2(self) :
+            return self.__n2
     
     def set_n2(self,n2) :
-        if type(n2) == int or type(n2) == float :
-            self.__n2 = n2
-        else :
-            raise TypeError("Il faut un nombre")
+        self.__n2 = n2
         
     def get_n3(self) :
         return self.__n3
     
     def set_n3(self,n3) :
-        if type(n3) == int or type(n3) == float :
-            self.__n3 = n3
-        else :
-            raise TypeError("Il faut un nombre")
+        self.__n3 = n3
         
     def moyenne(self) :
         return (self.__n2 + self.__n3)/2
