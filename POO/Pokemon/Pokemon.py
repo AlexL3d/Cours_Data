@@ -44,7 +44,44 @@ Ensuite, amusez-vous à faire des combats de Pokémon.
 """
 
 
-class Pokemon():
+class Pokemon:
 
     def __init__(self) -> None:
-        pass
+        self.nom = None
+        self.atk = None
+        self.hp = None
+        self.type = "Normal"
+
+    def IsDead(self):
+        pokemon_dead = False
+
+        if self.hp <= 0:
+            pokemon_dead = True
+
+        return pokemon_dead
+
+    def Attaquer(self, pokemon_attaqué):
+        self.TypAtk(pokemon_attaqué)
+        pokemon_attaqué.hp = pokemon_attaqué.hp - self.atk
+
+    def TypAtk(self, pokemon_attaqué):
+
+        if self.type == "Feu":
+            if pokemon_attaqué.type == "Eau":
+                self.atk *= 1/2
+            elif pokemon_attaqué.type == "Plante":
+                self.atk *= 2
+        elif self.type == "Eau":
+            if pokemon_attaqué.type == "Plante":
+                self.atk *= 1/2
+            elif pokemon_attaqué.type == "Feu":
+                self.atk *= 2
+        elif self.type == "Plante":
+            if pokemon_attaqué.type == "Feu":
+                self.atk *= 1/2
+            elif pokemon_attaqué.type == "Eau":
+                self.atk *= 2
+
+    def AffichageStats(self):
+        print(
+            f"Pokemon : {self.nom} / HP : {self.hp} / ATK : {self.atk} / TYPE : {self.type}")
