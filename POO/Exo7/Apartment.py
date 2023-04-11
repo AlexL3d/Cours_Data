@@ -3,7 +3,6 @@ from Porte import Porte
 
 class Apartment(House) :
     def __init__(self,surface,color) -> None:
-        super().__init__(surface, color)
         self.__surface = surface
         self.__porte = Porte(color)
 
