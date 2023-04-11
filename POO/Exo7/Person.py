@@ -1,5 +1,6 @@
 from House      import House
 from Apartment  import Apartment
+from Porte      import Porte
 
 class Person :
     
@@ -7,8 +8,11 @@ class Person :
         self.__nom = nom
         self.__logement = self.Choix(surface,color) 
 
-    def Display(self) :
-        pass
+    def Display(self,surface) :
+        if surface > 50 :
+            House.Display(self.GetLogement())
+        else :
+            Apartment.Display(self.GetLogement())
 
     def Choix(self,surface,color) :
         if surface > 50 :
@@ -34,7 +38,4 @@ class Test :
 
     def main (a,b,c) :
         personne = Person(a,b,c)
-        personne.Display()
-
-if __name__ == "__main__" :
-    test = Test()
+        personne.Display(b)

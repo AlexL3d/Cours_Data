@@ -23,7 +23,8 @@ class House :
         self.__porte = Porte(color)
 
     def Display(self) :
-        print(f"Je suis une maison, ma surface est de {self.__surface} m².") 
+        print(f"Je suis une maison, ma surface est de {self.surface} m².") 
+        Porte.Display(self.GetDoor())
 
     def GetDoor(self) :
         return self.__porte
