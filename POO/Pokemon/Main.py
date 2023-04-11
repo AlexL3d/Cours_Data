@@ -27,14 +27,20 @@ class Test:
         florizarre.atk = 110
         florizarre.hp = 140
         florizarre.AffichageStats()
+        
+        ratatac = Pokemon()
+        ratatac.nom ="Ratatac"
+        ratatac.atk = 80
+        ratatac.hp = 100
+        ratatac.AffichageStats()
 
-        florizarre.Attaquer(tortank)
+        florizarre.Attaquer(dracaufeu)
 
-        if tortank.IsDead():
+        if dracaufeu.IsDead():
             print("Le pokémon attaqué est à terre !!!")
         else:
             print("Le pokémon attaqué est encore debout !")
 
-
+#APPEL DES FONCTIONS
 test = Test()
 test.Main()

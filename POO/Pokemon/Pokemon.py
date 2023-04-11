@@ -61,6 +61,8 @@ class Pokemon:
         return pokemon_dead
 
     def Attaquer(self, pokemon_attaqué):
+        print(f"{self.nom} attaque {pokemon_attaqué.nom} !!!")
+
         self.TypAtk(pokemon_attaqué)
         pokemon_attaqué.hp = pokemon_attaqué.hp - self.atk
 
