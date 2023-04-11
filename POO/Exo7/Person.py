@@ -10,6 +10,7 @@ class Person:
         self.__logement = self.Choix(surface, color)
 
     def Display(self, surface):
+        print(f"Le propriétaire est {self.nom}.")
         if surface > 50:
             House.Display(self.GetLogement())
         else:

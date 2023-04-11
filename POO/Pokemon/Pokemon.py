@@ -42,3 +42,9 @@ Ces classes héritent de la classe Pokemon et qui représentent les trois types 
 susmentionnés. 
 Ensuite, amusez-vous à faire des combats de Pokémon.
 """
+
+
+class Pokemon():
+
+    def __init__(self) -> None:
+        pass
