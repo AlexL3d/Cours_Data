@@ -10,6 +10,7 @@ class Test:
         pass
 
     def Main(self):
+        # Définition des stats des Pokemons
         dracaufeu = Pokemon_Feu()
         dracaufeu.nom = "Dracaufeu"
         dracaufeu.atk = 130
@@ -34,12 +35,23 @@ class Test:
         ratatac.hp = 100
         ratatac.AffichageStats()
 
-        florizarre.Attaquer(dracaufeu)
+
+        # Début du combat
+        dracaufeu.IsDead()
+        florizarre.IsDead()
+
+        while not dracaufeu.IsDead() and not florizarre.IsDead():
+            florizarre.Attaquer(dracaufeu)
+            dracaufeu.IsDead()
+            
+            if not dracaufeu.IsDead():
+                dracaufeu.Attaquer(florizarre)
+                florizarre.IsDead()
 
         if dracaufeu.IsDead():
-            print("Le pokémon attaqué est à terre !!!")
-        else:
-            print("Le pokémon attaqué est encore debout !")
+            print("Dracaufeu a perdu !")
+        elif florizarre.IsDead():
+            print("Florizarre a perdu !")
 
 
 # APPEL DES FONCTIONS
