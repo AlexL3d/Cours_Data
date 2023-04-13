@@ -1,6 +1,5 @@
 from House import House
 from Apartment import Apartment
-from Porte import Porte
 
 
 class Person:

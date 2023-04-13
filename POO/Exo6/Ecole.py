@@ -16,60 +16,64 @@ afficher son âge
 – Créez un objet Teacher, 40 ans, demandez-lui de dire « Hello » puis commence l’explication
 """
 
-class Person :
+
+class Person:
 
     def __init__(self) -> None:
         pass
 
-    def Hello(self) :
+    def Hello(self):
         print("Hello!")
 
-    def SetAge(self,age) : 
+    def SetAge(self, age):
         self.__age = age
 
     @property
-    def age(self) :
+    def age(self):
         return self.__age
 
-    @age.setter 
-    def age(self,valeur):
+    @age.setter
+    def age(self, valeur):
         self.__age = valeur
 
-class Student(Person) :
+
+class Student(Person):
 
     def __init__(self) -> None:
         super().__init__()
-    
-    def GoToClasses(self) :
+
+    def GoToClasses(self):
         print("I'm going to class")
 
-    def DisplayAge(self) :
+    def DisplayAge(self):
         print(f"My age is : {self.age} years old")
 
-class Teacher(Person) :
-    
+
+class Teacher(Person):
+
     def __init__(self) -> None:
         super().__init__()
         self.__subject = "Coder Chat GPT"
-        
-    def Explain(self) :
-        print(f"Explanation begins : {self.__subject}.")
+
+    def Explain(self):
+        print(f"Explanation begins : {self.subject}.")
 
     @property
-    def subject(self) :
+    def subject(self):
         return self.__subject
 
-    @subject.setter 
-    def subject(self,valeur):
+    @subject.setter
+    def subject(self, valeur):
         self.__subject = valeur
 
-class Test :
+
+class Test:
 
     def __init__(self) -> None:
         pass
 
     def main(self):
-        
+
         personne = Person()
         personne.Hello()
 
