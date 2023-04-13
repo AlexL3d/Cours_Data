@@ -29,11 +29,11 @@ class Test:
         florizarre.hp = 140
         florizarre.AffichageStats()
 
-        ratatac = Pokemon()
-        ratatac.nom = "Ratatac"
-        ratatac.atk = 80
-        ratatac.hp = 100
-        ratatac.AffichageStats()
+        ratattac = Pokemon()
+        ratattac.nom = "Rattatac"
+        ratattac.atk = 80
+        ratattac.hp = 100
+        ratattac.AffichageStats()
 
 
         # Début du combat
