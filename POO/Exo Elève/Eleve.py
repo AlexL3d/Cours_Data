@@ -18,40 +18,42 @@ de lui en supprimer une.
     
 """
 
-class Eleve :
-    
-    def __init__(self,nom:str,prenom:str,age:int,list_notes: list) -> None:
-        self.nom = nom 
-        self.prenom = prenom 
+
+class Eleve:
+
+    def __init__(self, nom: str, prenom: str, age: int, list_notes: list) -> None:
+        self.nom = nom
+        self.prenom = prenom
         self.age = age
         self.list_notes = list_notes
 
-    def affichage(self) :
-        print(f"Informations de l'élève : \n - Nom : {self.nom} \n - Prénom : {self.prenom} \n - Age : {self.age} \n - Liste de notes : {self.list_notes} ")
-    
-    def moyenne(self) :
+    def affichage(self):
+        print(
+            f"Informations de l'élève : \n - Nom : {self.nom} \n - Prénom : {self.prenom} \n - Age : {self.age} \n - Liste de notes : {self.list_notes} ")
+
+    def moyenne(self):
         moyenne = sum(self.list_notes) / len(self.list_notes)
         return moyenne
-    
-    def ajouter_note(self,note) :
+
+    def ajouter_note(self, note):
         self.list_notes.append(note)
-        
-    def supprimer_note(self,liste,note) :
-        for i in range (len(liste)):
-            if liste[i] == note :
-                index = i    
-            
+
+    def supprimer_note(self, liste, note):
+        for i in range(len(liste)):
+            if liste[i] == note:
+                index = i
+
         self.list_notes.pop(index)
-    
-if __name__ == '__main__' :
-    
-    Said = Eleve('Cherifi','Said',31,[12,9,20,16,4])
+
+
+if __name__ == '__main__':
+
+    Said = Eleve('Cherifi', 'Said', 31, [12, 9, 20, 16, 4])
     Said.affichage()
     print(Said.moyenne())
     Said.ajouter_note(20)
     Said.affichage()
     print(Said.moyenne())
-    Said.supprimer_note(Said.list_notes,20)
+    Said.supprimer_note(Said.list_notes, 20)
     Said.affichage()
     print(Said.moyenne())
-
