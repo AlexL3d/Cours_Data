@@ -39,3 +39,5 @@ class Boite:
 if __name__ == "__main__":
     boite = Boite(12, 5, 3)
     boite.affichage()
+    
+    
