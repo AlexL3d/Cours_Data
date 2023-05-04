@@ -227,22 +227,6 @@ ORDER BY ANNEE ;
 ```
 SELECT
 	ventes.ANNEE,
-    article.NOM_ARTICLE,
-    SUM(QUANTITE)
-FROM 
-	VENTES
-JOIN 
-	ARTICLE
-ON ventes.ID_ARTICLE = article.ID_ARTICLE
-WHERE ventes.ANNEE = 2016
-GROUP BY ventes.ANNEE, article.NOM_ARTICLE;
-```
-
-Si l'on trie sur l'ID de l'article plutôt que sur son nom, cela donne :
-
-```
-SELECT
-	ventes.ANNEE,
     article.ID_ARTICLE,
     article.NOM_ARTICLE,
     SUM(ventes.QUANTITE)
