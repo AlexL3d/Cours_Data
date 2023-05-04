@@ -258,11 +258,10 @@ GROUP BY ANNEE,ventes.ID_ARTICLE;
 ## Exercice 19 :
 
 
-Même principe que le 18
-
 ```
 SELECT
-	ventes.ANNEE,
+    ventes.ANNEE,
+    article.ID_ARTICLE,
     article.NOM_ARTICLE,
     SUM(QUANTITE)
 FROM 
