@@ -296,7 +296,7 @@ WHERE type.NOM_TYPE = 'Trappiste';
 ## Exercice 22 :
 
 ```
-select ventes.NUMERO_TICKET
+select DISTINCT ventes.NUMERO_TICKET
 from 
 	ventes
 where ventes.ID_ARTICLE in ( 
@@ -304,7 +304,7 @@ where ventes.ID_ARTICLE in (
     from 
 		ventes
 	where ventes.ANNEE = 2014 
-    and ventes.NUMERO_TICKET = 854 )
+    and ventes.NUMERO_TICKET = 856 )
 	;
 ```
 
@@ -315,7 +315,7 @@ SELECT article.ID_ARTICLE
 from 
 	article
 where 
-	article.TITRAGE = (
+	article.TITRAGE > (
 		Select 
 			max(article.TITRAGE)
         from
@@ -423,4 +423,33 @@ GROUP BY article.ID_ARTICLE, article.NOM_ARTICLE, article.VOLUME
 ORDER BY TOTAL DESC
     LIMIT 5
 ;
+```
+
+ ## Exercice 28 :
+
+ ```
+ SELECT 
+	article.ID_ARTICLE,
+    article.NOM_ARTICLE,
+    article.VOLUME,
+    ((R16.QTE2016 - R15.QTE2015) / R15.QTE2015) as VARIATION
+FROM 
+	article
+join (
+	SELECT ID_ARTICLE, SUM(QUANTITE) AS QTE2015
+    FROM
+		ventes
+	WHERE ANNEE = 2015
+    GROUP BY ID_ARTICLE 
+    ) AS R15 
+on Article.ID_ARTICLE = R15.ID_ARTICLE
+join (
+	SELECT ID_ARTICLE, SUM(QUANTITE) AS QTE2016
+    FROM
+		ventes
+	WHERE ANNEE = 2016
+    GROUP BY ID_ARTICLE 
+    ) AS R16 
+on Article.ID_ARTICLE = R16.ID_ARTICLE
+HAVING ABS(VARIATION) < 0.01;
 ```
