@@ -11,3 +11,10 @@
 
 Evolution linéaire de la puissance des processeurs dans le temps (Ca a duré pendant 20 ans, après limite physique et technique)
 Problème : Pratique mais changement de matos régulier donc onéreux
+
+## Hadoop
+
+Environnement de technos pour faire un programme classique et le transformer en instructions en MapReduce
+Hadoop est en JAVA
+En découle SPARK, spécifiquement créé pour le traitement de données mais codé en SCALA
+Mais il existe la librairie PySpark pour piloter Spark
