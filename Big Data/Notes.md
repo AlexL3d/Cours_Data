@@ -71,3 +71,8 @@ Supprimer un fichier
 ```
 hadoop fs -rm nom_fichier
 ```
+
+lancer le programme WordCount avec les fichiers du dossier input en entrée
+```
+hadoop jar WordCount.jar input 
+```
