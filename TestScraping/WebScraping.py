@@ -12,10 +12,9 @@ if response.ok :
     for td in tds :
         a = td.find("a")
         link = a["href"]
-        # if len(link.find("Flag")) == 0 :
         links.append('https://fr.wikipedia.org' + link)
 
-with open('url.txt','w') as file :
+with open('TestScraping/url.txt','w') as file :
     for link in links :
         file.write(f"{link} \n")
         
