@@ -11,7 +11,7 @@ def get_trending_repos():
     }
 
     response = requests.get(url, params=params)
-    if response.status_code == 200:
+    if response.ok :
         data = response.json()
         repos = data.get("items", [])
         return repos
