@@ -8,24 +8,29 @@ def Connexion():
     host = 'localhost'
     user = 'Alex'
     password = 'SINAY'
-    database = 'TestDB'
+    port = '3308'
 
     # Création de la connexion
     conn = mysql.connector.connect(
         host=host,
         user=user,
         password=password,
-        database=database
+        port=port
     )
     cursor = conn.cursor()
+    
+    # Test de connexion
+    if conn.is_connected():
+        print('Connecté à MariaDB')
+        return conn
 
 
-def Validation_Changement():
+def Validation_Changement(conn: Connexion):
     # Valider les changements
     conn.commit()
 
 
-def Close_Connexion():
+def Close_Connexion(conn: Connexion):
     # Fermer la connexion à la base de données
     conn.close()
 
@@ -56,17 +61,4 @@ def Lect_Json() -> json:
 
 ############ MAIN ##############
 
-    # Lecture du fichier Json
-    data = Lect_Json()
-
-    # Connexion à la base SQL
-    Connect = Connexion()
-
-    # # Insertion en base de données
-    Insertion = Insertion()
-
-    # # Validation des insertions des données en base
-    Validation = Validation_Changement()
-
-    # # Fermeture de la connexion à la base de données
-    Fermeture = Close_Connexion()
+#meture = Close_Connexion()
