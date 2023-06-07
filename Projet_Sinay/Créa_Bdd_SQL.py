@@ -74,9 +74,9 @@ Connect = Connexion()
 Crea_BDD = Crea_Bdd(Connect)
 
 # Utilisation de la BDD spécifiée
-BaseDeDonnées_Spe = Use_Bdd(Connect,Crea_BDD)
+BaseDeDonnées_Spe = Use_Bdd(Connect, Crea_BDD)
 
-# Création de la base de données Test
+# Création de la table Test
 Crea_table_Tests = Crea_table(Connect, Crea_BDD)
 
 # Fermeture de la connexion à la base de données

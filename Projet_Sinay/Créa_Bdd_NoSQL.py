@@ -23,6 +23,12 @@ def Insertion_collection(collection):
             'nom': 'John Doe',
             'age': 30,
             'ville': 'Paris'
+            },
+            'villes' :
+            {
+            'nom' : 'Lille',
+            'Latitude' : 12,
+            'longitude' : 3
             }
     }
     collection.insert_one(data)
