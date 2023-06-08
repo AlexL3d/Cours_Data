@@ -44,9 +44,12 @@ def Lecture_Collection(collection) :
 #Connexion à la base MongoDB 
 conn = Connexion()
 
-#Création de la base de données
-Bdd = Crea_Bdd(conn)
-
+if 'BDD_Json' not in conn.list_database_names() :
+    #Création de la base de données
+    Bdd = Crea_Bdd(conn)
+else :
+    Bdd = conn['BDD_Json']
+    
 #Création de la collection
 collection = Crea_collection(Bdd)
 
