@@ -54,7 +54,6 @@ def FindLine(codes):
         # Récupération du Json avec les données des groupes
         response = requests.get(url,headers=Random_User_Agent()) 
 
-
         if response.ok:
             # Transformation des données récupérées en format Json
             List_Line = response.text
@@ -78,7 +77,6 @@ def FindBoat(codes):
 
         # Récupération du Json avec les données des groupes
         response = requests.get(url,headers=Random_User_Agent())
-
 
         if response.ok:
             # Transformation des données récupérées en format Json
