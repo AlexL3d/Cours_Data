@@ -70,7 +70,12 @@ def FindLine(codes):
 def FindBoat(codes):
 
     List_Boats = []
-    for index in codes :
+
+    #Transformation de la liste des listes de codes en liste
+    List_codes = [code for List in codes for code in List]
+
+    #Boucle d'appels sur la liste des codes
+    for index in List_codes :
 
         # Definition de l'URL pour récupérer les différents codes
         url = ("https://elines.coscoshipping.com/ebbase/public/vesselParticulars/search?pageSize=9999&state=lines&code=" + str(index) + "&timestamp=" + str(Actual_Time()))
@@ -82,9 +87,8 @@ def FindBoat(codes):
             # Transformation des données récupérées en format Json
             List_Line = response.text
             List_Line_json = json.loads(List_Line)
-            print(List_Line_json)
 
-        # Création de la liste des infos pour chaque bateau
+            # Création de la liste des infos pour chaque bateau
             List_Code_Line = [item for item in List_Line_json["data"]["content"]]
             List_Boats.append(List_Code_Line)
 
