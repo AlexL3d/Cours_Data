@@ -4,6 +4,7 @@ import time
 import random
 
 def Actual_Time():
+     #Récupération du TimeStamp actuel pour appel sur la page du site
     ActualTimeStamp = int(time.time())
     return ActualTimeStamp
 
