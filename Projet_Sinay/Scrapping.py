@@ -22,7 +22,7 @@ def Random_User_Agent():
                         "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
                     ]
 
-    Random_User_Agent = random.choice(List_User_Agent)
+    Random_User_Agent = {"User-Agent" : random.choice(List_User_Agent)}
 
     return Random_User_Agent
 
