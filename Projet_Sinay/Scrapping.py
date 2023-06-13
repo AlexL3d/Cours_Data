@@ -117,9 +117,38 @@ def FindBoat(codes):
 
         TimeDelay()
 
-    return List_Boats
+    # Création du fichier contenant toutes les infos des Bateaux et des Schedules
+    with open('Projet_Sinay/List_Boat.json', 'w') as file:
+        file.write(f"{List_Boats}")
 
-# def ScheduleBoat(codes):
+
+    return List_Boats,response
+
+def ScheduleBoat(List_Boat):
+    
+    List_Schedule_Boats = []
+    Test = List_Boat[0][0]
+
+    for liste in List_Boat:
+        for dictionnaire in liste:
+                        
+            # Definition de l'URL pour récupérer les différents codes
+            url = ("https://elines.coscoshipping.com/ebschedule/public/purpoShipment/vesselCode?vesselCode=" + str(dictionnaire["VesselCode"]) + "&period=28&timestamp= " + str(Actual_Time()))
+            
+            # Récupération du Json avec les données des groupes
+            response = requests.get(url,headers=Random_User_Agent())
+
+            if response.ok:
+                # Transformation des données récupérées en format Json
+                List_Line = response.json()
+
+                # Création de la liste des infos pour chaque bateau
+                List_Schedule_Boats.append(List_Line["data"]["content"])
+
+
+            TimeDelay()
+
+    return List_Boats
 
 # ===== Test =====
 Codes,code_retour = FindLineGroup()
@@ -128,8 +157,11 @@ if code_retour.ok :
     Lines,code_retour = FindLine(Codes)
 
 if code_retour.ok :  
-    List_Boats = FindBoat(Lines)
+    List_Boats,code_retour = FindBoat(Lines)
+
+if code_retour.ok :
+    List_Schedule = ScheduleBoat(List_Boats)
 
 # Création du fichier contenant toutes les infos des Bateaux et des Schedules
 with open('Projet_Sinay/Shedule_Boat.json', 'w') as file:
-    file.write(f"{List_Boats}")
+    file.write(f"{List_Schedule}")
