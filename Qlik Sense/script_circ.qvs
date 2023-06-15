@@ -1,0 +1,54 @@
+// Créer une table Employees
+Employees:
+LOAD * Inline [
+    EmployeeID, ManagerID, Name, Continent
+    1, 3, "John", "North America"
+    2, 1, "Sara", "North America"
+    3, 2, "David", "Europe"
+    4, 5, "Jane", "Oceania"
+    5, 4, "Emma", "Europe"
+];
+
+// Créer une table Managers
+Managers:
+LOAD * Inline [
+    ManagerID, Department
+    1, "Sales"
+    2, "Marketing"
+    3, "IT"
+    4, "HR"
+    5, "Finance"
+];
+
+// Créer une table Departments
+Departments:
+LOAD * Inline [
+    Department, Location
+    "Sales", "Building A"
+    "Marketing", "Building B"
+    "IT", "Building C"
+    "HR", "Building D"
+    "Finance", "Building E"
+];
+
+// Créer une table Locations
+Locations:
+LOAD * Inline [
+    Location, Country
+    "Building A", "USA"
+    "Building B", "Canada"
+    "Building C", "UK"
+    "Building D", "Australia"
+    "Building E", "Germany"
+];
+
+// Créer une table Countries
+Countries:
+LOAD * Inline [
+    Country, Continent, EmployeeID
+    "USA", "North America", 1
+    "Canada", "North America", 2
+    "UK", "Europe", 3
+    "Australia", "Oceania", 4
+    "Germany", "Europe", 5
+];
