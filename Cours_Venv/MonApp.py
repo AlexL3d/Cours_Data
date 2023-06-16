@@ -10,7 +10,13 @@ def main():
     print("Hello World!")
 
 
-def main2 ():
+def main2():
     """ Une méthode pour tester un appel
     """
-    print("test")
+    print("Je suis importé")
+
+
+if __name__ == "__main__":
+    main()
+else:
+    main2()

@@ -3,5 +3,5 @@
 
 from MonApp import main as principal
 
-
-principal()
+if __name__ == '__main__':
+    principal()
