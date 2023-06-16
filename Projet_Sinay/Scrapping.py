@@ -4,16 +4,31 @@ import time
 import random
 
 def Actual_Time():
-     #Récupération du TimeStamp actuel pour appel sur la page du site
+    """ Fonction qui permet de récupérer l'heure actuelle
+
+    Returns:
+        _type_: int 
+    """
     ActualTimeStamp = int(time.time())
     return ActualTimeStamp
 
 def TimeDelay (): 
-    #Création d'une variable de délai randommisée entre 0 et 5 secondes
+    """ Fonction qui permet de faire un delai entre chaque requéte
+
+    Returns:
+        int: date 
+    """
     delai = time.sleep(random.random()*5)
+    return delai
 
 def Random_User_Agent():
-    #Liste de Users Agents :
+    """ Fonction qui permet de récupérer un User Agent aléatoire
+
+    
+
+    Returns:
+        str: User Agent
+    """
     List_User_Agent = [
                         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
                         "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0",
@@ -51,7 +66,13 @@ def Random_User_Agent():
     return Random_User_Agent
 
 def FindLineGroup():
-    # Definition de l'URL pour récupérer les différents codes
+    """ Fonction qui permet de récupérer les codes des groupes
+
+    
+
+    Returns:
+        list : liste des codes
+    """
     url = ("https://elines.coscoshipping.com/ebbase/public/general/findLineGroup?timestamp=" + str(Actual_Time()))
 
     # Récupération du Json avec les données des groupes
@@ -68,6 +89,32 @@ def FindLineGroup():
     return List_Code_Group,response
 
 def FindLine(codes):
+    
+    """ Fonction qui permet de récupérer les codes des groupes
+
+    Args:
+        codes (list): liste des codes
+
+    Returns:
+        list : liste des codes
+    """
+    List_Codes = []
+    for index in codes:
+
+        # Definition de l'URL pour récupérer les différents codes
+        url = ("https://elines.coscoshipping.com/ebbase/public/general/findLines?lineGroupCode=" + str(index) + "&timestamp=" + str(Actual_Time()))
+
+        # Récupération du Json avec les données des groupes
+        response = requests.get(url,headers=Random_User_Agent()) 
+
+        if response.ok:
+            # Transformation des données récupérées en format Json
+            List_Line = response.text
+            List_Line_json = json.loads(List_Line)
+
+            List_Codes.append(List_Line_json)
+
+    return List_Codes,response
 
     List_Codes = []
     for index in codes:
@@ -92,6 +139,29 @@ def FindLine(codes):
     return List_Codes,response
 
 def FindBoat(codes):
+    """ Fonction qui permet de récupérer les codes des groupes
+
+    Args:
+        codes (list): liste des codes
+
+    Returns:
+        list : liste des codes
+    """
+
+    List_Codes = []
+    for index in codes:
+
+        # Definition de l'URL pour récupérer les différents codes
+        url = ("https://elines.coscoshipping.com/ebbase/public/vesselParticulars/search?pageSize=9999&state=lines&lineCode=" + str(index) + "&timestamp=" + str(Actual_Time()))
+
+        # Récupération du Json avec les données des groupes
+        response = requests.get(url,headers=Random_User_Agent())
+
+        if response.ok:
+            # Transformation des données récupérées en format Json
+            List_Codes.append(response.json())
+
+    return List_Codes,response
 
     List_Boats = []
 
@@ -125,16 +195,39 @@ def FindBoat(codes):
     return List_Boats,response
 
 def ScheduleBoat(List_Boat):
-    
+    """ Fonction qui permet de récupérer les codes des groupes
+
+    Args:
+        codes (list): liste des codes
+
+    Returns:
+        list : liste des codes
+    """
+
+    #Transformation de la liste des listes de codes en liste
+    List_Boat = [boat for List in List_Boat for boat in List]
+
+    # Boucle d'appels sur la liste des codes
+    for index in List_Boat :
+
+        # Definition de l'URL pour récupérer les différents codes
+        url = ("https://elines.coscoshipping.com/ebschedule/public/purpoShipment/vesselCode?vesselCode=" + str(index["VesselCode"]) + "&period=28&timestamp= " + str(Actual_Time()))
+
+        # Récupération du Json avec les données des groupes
+        response = requests.get(url,headers=Random_User_Agent())
+
+        if response.ok:
+
+
     List_Schedule_Boats = []
     Test = List_Boat[0][0]
 
     for liste in List_Boat:
         for dictionnaire in liste:
-                        
+
             # Definition de l'URL pour récupérer les différents codes
             url = ("https://elines.coscoshipping.com/ebschedule/public/purpoShipment/vesselCode?vesselCode=" + str(dictionnaire["VesselCode"]) + "&period=28&timestamp= " + str(Actual_Time()))
-            
+
             # Récupération du Json avec les données des groupes
             response = requests.get(url,headers=Random_User_Agent())
 
@@ -167,7 +260,6 @@ def main():
     # Création du fichier contenant toutes les infos des Bateaux et des Schedules
     with open('Projet_Sinay/Shedule_Boat.json', 'w') as file:
         file.write(f"{List_Schedule}")
-
 
 # ===== Test =====
 main()
