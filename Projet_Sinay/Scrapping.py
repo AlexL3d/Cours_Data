@@ -150,18 +150,24 @@ def ScheduleBoat(List_Boat):
 
     return List_Boats
 
+def main(): 
+    """Méthode de déclenchement de mes fonctions d'appel au site
+    """
+    Codes,code_retour = FindLineGroup()
+
+    if code_retour.ok :
+        Lines,code_retour = FindLine(Codes)
+
+    if code_retour.ok :  
+        List_Boats,code_retour = FindBoat(Lines)
+
+    if code_retour.ok :
+        List_Schedule = ScheduleBoat(List_Boats)
+
+    # Création du fichier contenant toutes les infos des Bateaux et des Schedules
+    with open('Projet_Sinay/Shedule_Boat.json', 'w') as file:
+        file.write(f"{List_Schedule}")
+
+
 # ===== Test =====
-Codes,code_retour = FindLineGroup()
-
-if code_retour.ok :
-    Lines,code_retour = FindLine(Codes)
-
-if code_retour.ok :  
-    List_Boats,code_retour = FindBoat(Lines)
-
-if code_retour.ok :
-    List_Schedule = ScheduleBoat(List_Boats)
-
-# Création du fichier contenant toutes les infos des Bateaux et des Schedules
-with open('Projet_Sinay/Shedule_Boat.json', 'w') as file:
-    file.write(f"{List_Schedule}")
+main()
