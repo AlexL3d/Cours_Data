@@ -1,0 +1,1 @@
+from .FichierA import MaPartieA

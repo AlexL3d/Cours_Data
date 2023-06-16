@@ -1,6 +1,7 @@
 """ Fichier de test pour la fonction `hello_world`.
 """
 
+from MonModule1 import MaPartieA
 
 def main():
     """ Une méthode pour dire bonjour à tout le monde.
@@ -8,6 +9,7 @@ def main():
 
     """
     print("Hello World!")
+    MaPartieA()
 
 
 def main2():
