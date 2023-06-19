@@ -9,8 +9,6 @@ from bs4 import BeautifulSoup as Bs
 import csv
 
 
-
-
 def chargementEnv(varEnv: str):
     """ Charge les variables d'environnement
     """
@@ -37,25 +35,25 @@ def scrapBs():
     ol = soup.find('ol')
     articles = ol.find_all('article', class_='product_pod')
 
-    with open('save_data.csv', 'w', newline='') as file:
+    with open('./Cours_Venv/save_data.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         headers = ["Titre", "Note", "Prix"]
         writer.writerow(headers)
 
         for article in articles:
             image = article.find('img')
-            titre = image['alt']
+            titre = image.attrs['alt']
             print("titre : ", titre)
             star = article.find('p')
             star = star["class"][1]
-            print("Note : ", star, "sur 5")
+            print("Note : ",star , "sur 5")
             prix = article.find('p', class_='price_color').text
-            print("Prix (en {}) du livre : {}").format(prix[:1],prix[1:])
-            writer.writerow([titre, note, prix[1:]])
+            print("Prix (en {}) du livre : {}".format(prix[:1], prix[1:]))
 
-            with open('save_data.csv', 'a', newline='', encoding='utf-8') as file:
-                writer = csv.writer(file)
-                writer.writerow([titre, note, prix[1:]])
+            with open('./Cours_Venv/save_data.csv', 'a', newline='', encoding='utf-8') as file:
+                writer = csv.writer(file, delimiter=',')
+                writer.writerow([titre, star, prix[1:]])
+
 
 if __name__ == "__main__":
     # recupData()
