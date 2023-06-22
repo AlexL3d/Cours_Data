@@ -1,5 +1,5 @@
+import ConnectionDatabaseNoSQL as CDB
 from pymongo import MongoClient
-import ConnectionDatabaseNoSQL
 
 #################### METHODES ########################
 
@@ -12,6 +12,7 @@ def Créa_Bdd_NoSQL(conn):
         database_name = 'nom_de_la_base_de_donnees'
         Bdd = conn[database_name]
         return Bdd
+
     except PyMongoError as e:
         print("Erreur lors de la création de la base de données:", e)
 
@@ -20,7 +21,7 @@ def Créa_Bdd_NoSQL(conn):
 if __name__ == "__main__":
 
     # Connexion à la base MongoDB
-    conn = CDB.Conexion()
+    conn = CDB.Connexion()
 
     print("Connexion à la base MongoDB réussie")
 

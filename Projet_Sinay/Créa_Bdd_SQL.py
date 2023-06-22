@@ -1,53 +1,36 @@
 import mysql.connector
+import ConnectionDatabaseSQL as CD
 
 
-def Connexion():
-    # Établir une connexion à la base de données MySQL
-    # Informations de connexion
-    host = 'localhost'
-    user = 'root'
-    password = 'SINAY'
-    port = '3308'
+    # host = 'localhost'
+    # user = 'root'
+    # password = 'SINAY'
+    # port = '3308'
 
-    # Création de la connexion
-    conn = mysql.connector.connect(
-        host=host,
-        user=user,
-        port=port,
-        password=password
-    )
-
-    # Test de connexion
-    if conn.is_connected():
-        print('Connecté à MariaDB')
-        return conn
-
-
-def Crea_Bdd(conn: Connexion):
+def Crea_Bdd(conn: Connexion, name: str):
     # Création du curseur
     cursor = conn.cursor()
 
     # Création de la base de données
-    database_name = 'BDD_Test'
-    database_query = f"CREATE DATABASE IF NOT EXISTS {database_name}"
-    cursor = conn.cursor()
-    cursor.execute(database_query)
-    return database_name
+    try :
+        database_name = "name"
+        database_query = f"CREATE DATABASE IF NOT EXISTS {database_name}"
+        cursor = conn.cursor()
+        cursor.execute(database_query)
 
+    except mysql.connector.Error as err:
+        print("Erreur lors de la création de la base de données : {}".format(err))
 
-def Close_Connexion(conn: Connexion):
-    # Fermeture de la connexion
-    conn.close()
 
 ############ MAIN ##############
 
 
 if __name__ == '__main__':
     # Connexion à la base SQL
-    Connect = Connexion()
+    Connect = CD.ConnectDB()
 
     # Création de la database
-    Crea_BDD = Crea_Bdd(Connect)
+    Crea_BDD = Crea_Bdd(Connect, "BDD_test")
 
     # Fermeture de la connexion à la base de données
-    Fermeture = Close_Connexion(Connect)
+    conn.close()
