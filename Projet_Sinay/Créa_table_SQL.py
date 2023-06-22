@@ -22,32 +22,47 @@ def Connexion():
         print('Connecté à MariaDB')
         return conn
 
-
-def Crea_Bdd(conn: Connexion):
+def Use_Bdd(conn: Connexion, database_name: str):
     # Création du curseur
     cursor = conn.cursor()
 
-    # Création de la base de données
-    database_name = 'BDD_Test'
-    database_query = f"CREATE DATABASE IF NOT EXISTS {database_name}"
+    # Sélection de la base de données nouvellement créée
+    use_database_query = f"USE {database_name}"
+    cursor.execute(use_database_query)
+
+
+def Crea_table(conn: Connexion, database_name: str):
+    # Création du curseur
     cursor = conn.cursor()
-    cursor.execute(database_query)
-    return database_name
+
+    # Création d'une table
+    create_table_query = """
+    CREATE TABLE IF NOT EXISTS Tests (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        nom VARCHAR(100),
+        email VARCHAR(100)
+    )
+    """
+
+    cursor.execute(create_table_query)
 
 
 def Close_Connexion(conn: Connexion):
     # Fermeture de la connexion
     conn.close()
 
-############ MAIN ##############
-
 
 if __name__ == '__main__':
+
     # Connexion à la base SQL
     Connect = Connexion()
 
-    # Création de la database
-    Crea_BDD = Crea_Bdd(Connect)
+    # Utilisation de la BDD spécifiée
+    BaseDeDonnées_Spe = Use_Bdd(Connect, database_name=databases)
+
+    # Création de la table Test
+    database = "BDD_Test"
+    Crea_table_Tests = Crea_table(Connect, database_name=database)
 
     # Fermeture de la connexion à la base de données
     Fermeture = Close_Connexion(Connect)
