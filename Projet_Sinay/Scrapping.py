@@ -262,4 +262,5 @@ def main():
         file.write(f"{List_Schedule}")
 
 # ===== Test =====
-main()
+if __name__ == "__main__":
+    main()
