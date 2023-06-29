@@ -4,7 +4,7 @@ from src.FizzBuzz import Fizzbuzz
 # définition de la fonction FizzBuzz
 def test_Fizzbuzz_9():
      # vérification de la valeur retournée par la fonction Fizzbuzz(9)
-    test= Fizzbuzz(9)
+    test = Fizzbuzz(9)
     assert test == "Fizz"
 
 def test_Fizzbuzz_10():
