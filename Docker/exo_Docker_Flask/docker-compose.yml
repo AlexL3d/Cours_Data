@@ -3,7 +3,6 @@ services:
   mongodb:
     image: mongo
     container_name: mongodb
-    restart: always
     ports:
       - ${PORT_MONGODB}:27017
     volumes:
@@ -12,15 +11,24 @@ services:
   mongo-express:
     image: mongo-express
     container_name: mongo-express
-    restart: always
     ports:
       - ${PORT_MONGO_EXPRESS}:8081
     environment:
       - ME_CONFIG_MONGODB_SERVER=mongodb
       - ME_CONFIG_MONGODB_PORT=${PORT_MONGODB}
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
 
   Flask:
     build:
       context: .
       dockerfile: Dockerfile
-    image: Exo_Flask
+    ports:
+      - 5000:5000
+    depends_on:
+      - mongodb
+      - mongo-express
+    environment:
+      - MONGO_HOST=mongodb
+      - MONGO_PORT=27017
+      - MONGO_DB=Bdd_user
+      - MONGO_COLLECTION=user
