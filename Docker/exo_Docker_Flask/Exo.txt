@@ -1,0 +1,20 @@
+# Exercice Docker-compose
+
+But: 
+
+une petite application flask (python) pour gérer des utilisateurs
+associées une base de données mongoDB
+
+1. Coder l'application flask (un CRUD)
+2. Faire un dockerfile pour "dockeriser" l'application en image.
+3. Faire le docker-compose pour déployer mon application relié avec une base de données MongoDB
+4. ajouter une UI à mongo : mongo express
+5. Bonus : ajouter un volume de persistance pour ma bdd
+
+ATTENTION:
+
+- documentation
+- ports
+- Type des ID gérer par mongDB!
+
+Poster le résultat dans un repository git public!
