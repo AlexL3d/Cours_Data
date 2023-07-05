@@ -1,0 +1,26 @@
+services:
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - ${PORT_MONGODB}:27017
+    volumes:
+      - ./data:/data/db
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    ports:
+      - ${PORT_MONGO_EXPRESS}:8081
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_PORT=${PORT_MONGODB}
+
+  Flask:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: Exo_Flask
