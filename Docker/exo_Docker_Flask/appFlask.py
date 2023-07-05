@@ -3,42 +3,57 @@ from pymongo import MongoClient
 
 # Connexion à la base de données MongoDB
 client = MongoClient('mongodb://localhost:27017/')
-db = client[Bdd_user]  
-collection = db[users] 
+db = client[Bdd_user]
+collection = db[users]
 
 app = Flask(__name__)
 
-# Route pour créer un nouvel élément
-@app.route('/user', methods=['POST'])
+
+@app.route('/users', methods=['POST'])
 def create_user():
-    user = request.get_json()
-    collection.insert_one(user)
-    return jsonify({'message': 'Nouveau USER créé avec succès'})
+    user_data = request.get_json()
+    user = {
+        'name': user_data['name'],
+        'id': user_data['id'],
+        'email': user_data['email']
+    }
+    result = collection.insert_one(user)
+    return jsonify({'message': 'User created successfully', 'user_id': str(result.inserted_id)})
 
-# Route pour récupérer tous les éléments
-@app.route('/users', methods=['GET'])
-def get_all_users():
-    users = list(collection.find())
-    return jsonify(users)
 
-# Route pour récupérer un élément par son ID
-@app.route('/user/<user_id>', methods=['GET'])
+@app.route('/users/<user_id>', methods=['GET'])
 def get_user(user_id):
     user = collection.find_one({'_id': ObjectId(user_id)})
-    return jsonify(user)
+    if user:
+        return jsonify(user)
+    else:
+        return jsonify({'message': 'User not found'}), 404
 
-# Route pour mettre à jour un élément
-@app.route('/user/<user_id>', methods=['PUT'])
+
+@app.route('/users/<user_id>', methods=['PUT'])
 def update_user(user_id):
-    new_user = request.get_json()
-    collection.update_one({'_id': ObjectId(user_id)}, {'$set': new_user})
-    return jsonify({'message': 'USER mis à jour avec succès'})
+    user_data = request.get_json()
+    updated_user = {
+        'name': user_data['name'],
+        'id': user_data['id'],
+        'email': user_data['email']
+    }
+    result = collection.update_one(
+        {'_id': ObjectId(user_id)}, {'$set': updated_user})
+    if result.modified_count > 0:
+        return jsonify({'message': 'User updated successfully'})
+    else:
+        return jsonify({'message': 'User not found'}), 404
 
-# Route pour supprimer un élément
-@app.route('/user/<user_id>', methods=['DELETE'])
+
+@app.route('/users/<user_id>', methods=['DELETE'])
 def delete_user(user_id):
-    collection.delete_one({'_id': ObjectId(user_id)})
-    return jsonify({'message': 'USER supprimé avec succès'})
+    result = collection.delete_one({'_id': ObjectId(user_id)})
+    if result.deleted_count > 0:
+        return jsonify({'message': 'User deleted successfully'})
+    else:
+        return jsonify({'message': 'User not found'}), 404
+
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
