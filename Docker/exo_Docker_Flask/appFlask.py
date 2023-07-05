@@ -9,35 +9,35 @@ collection = db[users]
 app = Flask(__name__)
 
 # Route pour créer un nouvel élément
-@app.route('/item', methods=['POST'])
-def create_item():
-    item = request.get_json()
-    collection.insert_one(item)
+@app.route('/user', methods=['POST'])
+def create_user():
+    user = request.get_json()
+    collection.insert_one(user)
     return jsonify({'message': 'Nouveau USER créé avec succès'})
 
 # Route pour récupérer tous les éléments
-@app.route('/items', methods=['GET'])
-def get_all_items():
-    items = list(collection.find())
-    return jsonify(items)
+@app.route('/users', methods=['GET'])
+def get_all_users():
+    users = list(collection.find())
+    return jsonify(users)
 
 # Route pour récupérer un élément par son ID
-@app.route('/item/<item_id>', methods=['GET'])
-def get_item(item_id):
-    item = collection.find_one({'_id': ObjectId(item_id)})
-    return jsonify(item)
+@app.route('/user/<user_id>', methods=['GET'])
+def get_user(user_id):
+    user = collection.find_one({'_id': ObjectId(user_id)})
+    return jsonify(user)
 
 # Route pour mettre à jour un élément
-@app.route('/item/<item_id>', methods=['PUT'])
-def update_item(item_id):
-    new_item = request.get_json()
-    collection.update_one({'_id': ObjectId(item_id)}, {'$set': new_item})
+@app.route('/user/<user_id>', methods=['PUT'])
+def update_user(user_id):
+    new_user = request.get_json()
+    collection.update_one({'_id': ObjectId(user_id)}, {'$set': new_user})
     return jsonify({'message': 'USER mis à jour avec succès'})
 
 # Route pour supprimer un élément
-@app.route('/item/<item_id>', methods=['DELETE'])
-def delete_item(item_id):
-    collection.delete_one({'_id': ObjectId(item_id)})
+@app.route('/user/<user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    collection.delete_one({'_id': ObjectId(user_id)})
     return jsonify({'message': 'USER supprimé avec succès'})
 
 if __name__ == '__main__':
