@@ -1,0 +1,38 @@
+#Vieille version (plus obligatoire)
+version : '3.8'
+
+# liste des conteneurs
+services:
+
+  #mon premier service
+  madatabase:
+    #liste des attributs
+    image: mysql
+    restart: always
+    #ajout de volumes
+    volumes:
+      - ./articles.sql:/docker-entrypoint-initdb.d/articles.sql
+    ports:
+      - 3307:3306
+    networks:
+      - demoVnet
+    #Variables d'environnement
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+
+  #mon deuxième service
+  adminer:
+    image: adminer
+    ports:
+      - 8081:8080
+    restart: always
+    networks:
+      - demoVnet
+
+#Création de mes réseaux
+networks:
+  demoVnet:
+    driver: bridge
