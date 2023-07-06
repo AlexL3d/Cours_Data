@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from pymongo import MongoClient
 
 # # Connexion à la base de données MongoDB
-client = MongoClient('mongodb://localhost:27017/')
+client = MongoClient('mongodb://localhost:27017/',username='root',password='root',authSource='admin')
 db = client[Bdd_user]
 collection = db[users]
 
@@ -55,4 +55,4 @@ def delete_user(user_id):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=5000, debug=True)

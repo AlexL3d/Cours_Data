@@ -1,4 +1,4 @@
-# Exo Flask
+# Alexandre LEDUC - Exo Flask
 
 Création d'une application Flask pour la gestion d'utilisateur
 
