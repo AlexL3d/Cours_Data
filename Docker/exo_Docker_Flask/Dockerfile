@@ -12,11 +12,11 @@ COPY app.py .
 RUN pip install -r requirements.txt
 
 # Exposer le port utilisé par l'application Flask
-EXPOSE 5000
+EXPOSE ${PORT_FLASK}
 
 # Définir les variables d'environnement pour MongoDB
 ENV MONGO_HOST=localhost
-ENV MONGO_PORT=27017
+ENV MONGO_PORT=${PORT_MONGODB}
 ENV MONGO_DB=Bdd_user
 ENV MONGO_COLLECTION=user
 

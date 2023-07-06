@@ -1,13 +1,12 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
 
-# Connexion à la base de données MongoDB
+# # Connexion à la base de données MongoDB
 client = MongoClient('mongodb://localhost:27017/')
 db = client[Bdd_user]
 collection = db[users]
 
 app = Flask(__name__)
-
 
 @app.route('/users', methods=['POST'])
 def create_user():
@@ -20,7 +19,7 @@ def create_user():
     result = collection.insert_one(user)
     return jsonify({'message': 'User created successfully', 'user_id': str(result.inserted_id)})
 
-
+@app.route('/', methods=['GET'])
 @app.route('/users/<user_id>', methods=['GET'])
 def get_user(user_id):
     user = collection.find_one({'_id': ObjectId(user_id)})

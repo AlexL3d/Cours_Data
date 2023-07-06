@@ -16,6 +16,7 @@ Faire un gitclone du projet.
 Il faudra créer un fichier .env avec les variables d'environnement suivantes :
     - la redirection du port pour MongoDB (27017 par défaut)
     - la redirection du port pour MongoExpress (8081 par défaut)
+    - la redirection du port pour l'appli Flask (5000 par défaut)
 Dans un terminal, aller dans le répertoire du dossier et faire un "docker-compose up"
 
 ## Démarrage
