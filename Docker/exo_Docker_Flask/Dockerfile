@@ -1,12 +1,13 @@
 # Utilisez une image de base Python
-FROM python:3.9
+FROM python
 
 # Définition du répertoire de travail dans le conteneur
 WORKDIR /app
 
 # Copie des fichiers requis dans le conteneur
+# Le point sert à copier le fichier dans le dossier du WORKDIR
 COPY requirements.txt .
-COPY app.py .
+COPY appFlask.py .
 
 # Installation des dépendances
 RUN pip install -r requirements.txt
@@ -21,4 +22,4 @@ ENV MONGO_DB=Bdd_user
 ENV MONGO_COLLECTION=user
 
 # Commande pour exécuter l'application Flask
-CMD ["python", "app.py"]
+CMD ["python", "appFlask.py"]

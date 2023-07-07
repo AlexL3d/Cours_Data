@@ -18,17 +18,17 @@ services:
       - ME_CONFIG_MONGODB_PORT=${PORT_MONGODB}
       - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
 
-  Flask:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - ${PORT_FLASK}:5000
-    depends_on:
-      - mongodb
-      - mongo-express
-    environment:
-      - MONGO_HOST=mongodb
-      - MONGO_PORT=${PORT_MONGODB}
-      - MONGO_DB=Bdd_user
-      - MONGO_COLLECTION=user
+  # Flask:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - ${PORT_FLASK}:5000
+  #   depends_on:
+  #     - mongodb
+  #     - mongo-express
+  #   environment:
+  #     - MONGO_HOST=mongodb
+  #     - MONGO_PORT=${PORT_MONGODB}
+  #     - MONGO_DB=Bdd_user
+  #     - MONGO_COLLECTION=user
