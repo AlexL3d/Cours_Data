@@ -2,33 +2,45 @@ services:
 
   mongodb:
     image: mongo
+    restart: always
     container_name: mongodb
     ports:
       - ${PORT_MONGODB}:27017
     volumes:
       - ./data:/data/db
+    networks:
+      - app-mongo-VNet
 
   mongo-express:
     image: mongo-express
+    restart: always
     container_name: mongo-express
     ports:
       - ${PORT_MONGO_EXPRESS}:8081
     environment:
       - ME_CONFIG_MONGODB_SERVER=mongodb
-      - ME_CONFIG_MONGODB_PORT=${PORT_MONGODB}
-      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+    networks:
+      - app-mongo-VNet
+    depends_on:
+      - mongodb
 
-  # Flask:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - ${PORT_FLASK}:5000
-  #   depends_on:
-  #     - mongodb
-  #     - mongo-express
-  #   environment:
-  #     - MONGO_HOST=mongodb
-  #     - MONGO_PORT=${PORT_MONGODB}
-  #     - MONGO_DB=Bdd_user
-  #     - MONGO_COLLECTION=user
+  appflask:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - ${PORT_FLASK}:5000
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_HOST=mongodb
+      - MONGO_PORT=${PORT_MONGODB}
+      - MONGO_DB=Bdd_user
+      - MONGO_COLLECTION=user
+    networks:
+      - app-mongo-VNet
+
+networks:
+  app-mongo-VNet:
+    driver: bridge

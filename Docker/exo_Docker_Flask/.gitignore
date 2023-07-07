@@ -1,0 +1,6 @@
+venv
+# .env
+# Exo.txt
+# .dockerignore
+# .gitignore
+data
