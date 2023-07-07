@@ -13,6 +13,7 @@ client = MongoClient(host=host, port=port)
 db = client.Bdd_user
 coll = db.user
 
+
 @app.route("/")
 def hello_world():
     return "Hello, World!"
@@ -38,14 +39,14 @@ def get_users():
     users = list(coll.find())
     for user in users:
         user['_id'] = str(user['_id'])
-    return jsonify({'users': users})  
+    return jsonify({'users': users})
 
 
 @app.route('/update_user/<user_id>', methods=['PUT'])
 def update_user(user_id):
     user_data = request.get_json()
     user_data['_id'] = ObjectId(user_id)
-    result = coll.replace_one({'_id': ObjectId(user_id)},user_data)
+    result = coll.replace_one({'_id': ObjectId(user_id)}, user_data)
     user_data['_id'] = str(result.inserted_id)
     return jsonify({'message': 'User updated successfully'})
 
@@ -55,7 +56,7 @@ def delete_user(user_id):
     data = coll.find_one({'_id': ObjectId(user_id)})
     result = coll.delete_one({'_id': ObjectId(user_id)})
     return jsonify({'message': 'User deleted successfully'})
-    
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
