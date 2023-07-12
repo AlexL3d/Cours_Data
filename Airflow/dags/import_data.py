@@ -5,6 +5,7 @@ from airflow.providers.postgres.operators.postgres import PostgresOperator
 from requests import get
 import json
 import pandas as pd
+import psycopg2 as pg
 
 # définition de mon dag
 @dag(
@@ -34,9 +35,32 @@ def extract_to_postgres():
         df = pd.DataFrame(data_json)
         #enregistrement des données dans un fichier csv
         df.to_csv("/opt/airflow/dags/file/drivers_data.csv", sep=";", escapechar="\\", encoding='utf-8', quoting=1)
+        
+    #tâche 3 insertion des données dans la base de données
+    @task(task_id="load_to_postgres")
+    def load_to_postgres():
+        try :
+            # Ouvrir une connexion à la base de données
+            dbconnect = pg.connect(host="postgres", dbname="airflow", user="airflow", password="airflow")
+            # Création d'un curseur pour intéragir avec la base de données
+            cursor = dbconnect.cursor()
+            with open("/opt/airflow/dags/file/drivers_data.csv", "r") as source:
+                # Lecture de la ligne de headers
+                next(source)
+                for row in source :
+                    row_split = row.split(";")
+                    cursor.execute("""
+                        INSERT INTO drivers_data
+                        VALUES ('{}','{}','{}','{}','{}')
+                        """.format(row_split[1],row_split[2],row_split[3],row_split[4],row_split[5]
+                        )
+                    )
+            dbconnect.commit()
+        except Exception as error:
+            print(error)
 
     #relation entre mes tâches
-    create_drivers_table >> get_data_to_local()
+    create_drivers_table >> get_data_to_local() >> load_to_postgres()
 
 #Appel
 extract_to_postgres()
