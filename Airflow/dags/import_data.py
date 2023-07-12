@@ -6,6 +6,7 @@ from requests import get
 import json
 import pandas as pd
 import psycopg2 as pg
+from os import remove
 
 # définition de mon dag
 @dag(
@@ -58,9 +59,16 @@ def extract_to_postgres():
             dbconnect.commit()
         except Exception as error:
             print(error)
+        finally:
+            dbconnect.close()
+
+    # tâche 4 supprimer le fichier temporaire
+    @task(task_id="delete_file")
+    def delete_file():
+        remove("/opt/airflow/dags/file/drivers_data.csv")
 
     #relation entre mes tâches
-    create_drivers_table >> get_data_to_local() >> load_to_postgres()
+    create_drivers_table >> get_data_to_local() >> load_to_postgres() >> delete_file()
 
 #Appel
 extract_to_postgres()
