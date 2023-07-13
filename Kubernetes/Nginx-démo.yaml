@@ -1,0 +1,38 @@
+# Renseigner que c'est un fichier de config pour Kubernetes
+apiVersion: apps/v1
+#le type de ressource 
+kind: Deployment 
+#metadonnées de la ressource
+metadata: 
+  #Nom de ma ressource
+  name: nginx-demo
+  #lien avec mes éléments
+  labels: 
+    app: nginx-deploy
+
+#Spécification du deployment
+spec:
+  #information sur les réplicats de pods
+  replicas: 1
+  #lien d'appel de la ressource
+  selector: 
+    matchLabels:
+      app: nginx #liste des noms des pods
+    #template = pod
+  template:
+    #metadonnées
+    metadata:
+      labels:
+        app: nginx
+    #Spec du pod
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:stable-alpine3.17
+        ports:
+        - containerPort: 80
+        # limite ressource utilisation
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
