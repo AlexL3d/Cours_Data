@@ -13,7 +13,7 @@ metadata:
 #Spécification du deployment
 spec:
   #information sur les réplicats de pods
-  replicas: 1
+  replicas: 3
   #lien d'appel de la ressource
   selector: 
     matchLabels:
@@ -30,7 +30,7 @@ spec:
       - name: nginx
         image: nginx:stable-alpine3.17
         ports:
-        - containerPort: 80
+        - containerPort: 9080
         # limite ressource utilisation
         resources:
           limits:

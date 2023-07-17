@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb-mongoexpress
+  template:
+    metadata:
+      labels:
+        app: mongodb-mongoexpress
+    spec:
+      containers:
+      - image: mongo:latest
+        name: mongodb
+        ports:
+          - name: mongo-database
+            containerPort: 27017
+      - image: mongo-express:latest
+        name: mongoexpress
+        ports:
+          - name: mongoexpress
+            containerPort: 8081
