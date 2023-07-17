@@ -8,7 +8,7 @@ metadata:
 spec:
 # Lier mon service à son deployment
   selector:
-      app: mongodb-mongoexpress
+      app: mongodb
   ports:
   # port fixe attribué de mes pods
   - port: 27017 

@@ -6,11 +6,11 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: mongodb-mongoexpress
+      app: mongodb
   template:
     metadata:
       labels:
-        app: mongodb-mongoexpress
+        app: mongodb
     spec:
       containers:
       - image: mongo:latest
@@ -33,8 +33,3 @@ spec:
             secretKeyRef:
               name: mongo-secret
               key: mongo-root-password
-      # - image: mongo-express:latest
-      #   name: mongoexpress
-      #   ports:
-      #     - name: mongoexpress
-      #       containerPort: 8081
