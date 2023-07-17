@@ -3,9 +3,13 @@ kind: Service
 metadata:
   name: express-service
 spec:
+  #option qui rend le service externe
+  type: LoadBalancer
   selector:
     app: express
   ports:
   - port: 8081
     protocol: TCP
     targetPort: 8081
+    #port extérieur du node valeur entre 30000 et 32727
+    nodePort: 30000
