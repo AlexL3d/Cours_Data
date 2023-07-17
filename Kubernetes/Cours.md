@@ -33,6 +33,6 @@ Chaque node contient :
 
 déploiement dans un conteneur docker la totalité d'un micro cluster-Kubernetes (permet de bosser en formation sans avoir besoin de beaucoup de machines physiques ou virtuelles )
 
-# KubeECTL 
+# KubECTL
 
 Interface en ligne de commande pour contrôle Minikube

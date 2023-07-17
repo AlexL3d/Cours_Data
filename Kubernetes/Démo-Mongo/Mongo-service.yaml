@@ -1,0 +1,18 @@
+#fichier de config Kubernetes
+apiVersion: v1
+#Type de fichier
+kind: Service
+#metadonnées de la ressource
+metadata:
+  name: mongo-service
+spec:
+# Lier mon service à son deployment
+  selector:
+      app: mongodb-mongoexpress
+  ports:
+  # port fixe attribué de mes pods
+  - port: 27017 
+    # protocole de communication  
+    protocol: TCP
+    # port des pods à écouter
+    targetPort: 27017

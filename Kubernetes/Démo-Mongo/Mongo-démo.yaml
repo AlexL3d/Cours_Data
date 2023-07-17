@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mongodb-mongoexpress
+  template:
+    metadata:
+      labels:
+        app: mongodb-mongoexpress
+    spec:
+      containers:
+      - image: mongo:latest
+        name: mongodb
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - name: mongo-database
+          containerPort: 27017
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: mongo-root-username
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: mongo-root-password
+      # - image: mongo-express:latest
+      #   name: mongoexpress
+      #   ports:
+      #     - name: mongoexpress
+      #       containerPort: 8081
