@@ -6,7 +6,7 @@ spec:
   #option qui rend le service externe
   type: LoadBalancer
   selector:
-    app: express
+    app: mongo-express
   ports:
   - port: 8081
     protocol: TCP

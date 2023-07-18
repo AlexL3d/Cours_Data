@@ -36,3 +36,23 @@ déploiement dans un conteneur docker la totalité d'un micro cluster-Kubernetes
 # KubECTL
 
 Interface en ligne de commande pour contrôle Minikube
+
+# Maccro
+
+kubetcl apply -f "NomDuFichierADéployer"
+kubetcl get pod/node/service/deployment/secret/etc...
+
+# Namespace
+
+Permet d'organiser les pods etc (que pour la gestion, C'est TOUT)
+
+kubectl get namespace
+Par défaut, on utilise le default.
+Ne pas toucher à celui du système !!!!!
+Le Node-lease ne sert qu'au monitoring
+
+kubectl create namespace mon-namespace pour créer son propre namespace
+kubectl get pod -n mon-namespace pour check les pods de ce namespace
+
+kubens permet de ne pas toujours renseigner le namespace et garde le dernier en mémoire
+kubetcx permet de switch entre environnement de prod et dev

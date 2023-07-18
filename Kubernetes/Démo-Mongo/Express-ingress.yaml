@@ -1,0 +1,23 @@
+#Fichier de config kubernetes pour son réseau
+apiVersion: networking.k8s.io/v1
+#type de fichier
+kind: Ingress
+metadata:
+  name: ingress-mongo-express
+  labels:
+    name: ingress-mongo-express
+spec:
+  rules:
+  #ajout d'une URL publiques et accessible
+  - host: host-ingress-mongo-express
+  #protocole de communication aux services externes
+    http:
+      paths:
+      #chemin d'accès à mon service
+      - path: /
+        pathType: Prefix
+        backend:
+        #cible un service kubernetes
+        serviceName: express-service
+        #port du service correspondant
+        servicePort: 8081
