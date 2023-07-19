@@ -70,3 +70,5 @@ site : artifacthub.io
 
 # Volume
 
+PersistantVolume pour la persistance des données
+On passe par un PersistantVolumeClaim pour lier le Pod au PV
