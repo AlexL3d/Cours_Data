@@ -8,7 +8,7 @@ metadata:
     name: ingress-mongo-express
 spec:
   rules:
-  #ajout d'une URL publiques et accessible
+  #ajout d'une URL publiques et accessible (on met ce que l'on veut)
   - host: host-ingress-mongo-express
   #protocole de communication aux services externes
     http:
@@ -17,7 +17,9 @@ spec:
       - path: /
         pathType: Prefix
         backend:
-        #cible un service kubernetes
-        serviceName: express-service
-        #port du service correspondant
-        servicePort: 8081
+          service:
+            #cible un service kubernetes
+            name: express-service
+            #port du service correspondant
+            port: 
+              number: 8082

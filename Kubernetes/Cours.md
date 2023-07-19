@@ -56,3 +56,14 @@ kubectl get pod -n mon-namespace pour check les pods de ce namespace
 
 kubens permet de ne pas toujours renseigner le namespace et garde le dernier en mémoire
 kubetcx permet de switch entre environnement de prod et dev
+
+# Ingress
+
+Ajout de l'IP de l'INGRESS dans le fichier C:\Windows\System32\drivers\etc\hosts
+avec l'IP et le nom du host renseigné dans l'Ingress
+
+# Helm Charts 
+
+Manager de paquets pour K8s
+Quand on a besoin d'un cluster avec bcp d'images, fichiers de config etc, on utilise un équivalent docker pour K8s => Helm charts
+site : artifacthub.io 

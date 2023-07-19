@@ -1,0 +1,17 @@
+#template de pods helm charts
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{Value.name}}
+  labels:
+    name: {{Value.name}}
+spec:
+  containers:
+  - name: {{Value.container.name}}
+    image: {{Value.container.image}}
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: {{Value.container.port}}
