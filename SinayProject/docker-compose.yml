@@ -12,34 +12,34 @@ services:
     volumes:
       - app_data:/app/data 
 
-  postgreSQL:
-    image: postgres
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-    ports:
-      - ${PORT_POSTGRE}:5432
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    depends_on:
-      - appData
-    networks:
-      - app-VNet
+  # postgreSQL:
+  #   image: postgres
+  #   environment:
+  #     POSTGRES_USER: ${POSTGRES_USER}
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  #     POSTGRES_DB: ${POSTGRES_DB}
+  #   ports:
+  #     - ${PORT_POSTGRE}:5432
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   depends_on:
+  #     - appData
+  #   networks:
+  #     - app-VNet
 
-  appBdd:
-    restart: always
-    build:
-      context: .
-      dockerfile: DockerfileBdd
-    ports:
-      - ${PORT_POSTGRE}:5001
-    networks:
-      - app-VNet
-    depends_on:
-      - postgreSQL
-    volumes:
-      - app_data:/app/data
+  # appBdd:
+  #   restart: always
+  #   build:
+  #     context: .
+  #     dockerfile: DockerfileBdd
+  #   ports:
+  #     - ${PORT_POSTGRE}:5001
+  #   networks:
+  #     - app-VNet
+  #   depends_on:
+  #     - postgreSQL
+  #   volumes:
+  #     - app_data:/app/data
 
 networks:
   app-VNet:
@@ -47,4 +47,4 @@ networks:
 
 volumes:
   app_data:
-  postgres_data:
+  # postgres_data:
